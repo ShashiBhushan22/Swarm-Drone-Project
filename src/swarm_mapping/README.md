@@ -94,7 +94,7 @@ pip install numpy scipy
 ```python
 #!/usr/bin/env python3
 import rclpy
-from mapping.camera_interface import CameraInterface, CameraDisplay
+from src.swarm_mapping.camera_interface import CameraInterface, CameraDisplay
 
 rclpy.init()
 
@@ -118,8 +118,8 @@ finally:
 ```python
 #!/usr/bin/env python3
 import rclpy
-from mapping.camera_interface import CameraInterface
-from mapping.vision_processing import VisionProcessor, VisualizationHelper
+from src.swarm_mapping.camera_interface import CameraInterface
+from src.swarm_mapping.vision_processing import VisionProcessor, VisualizationHelper
 
 rclpy.init()
 
@@ -155,8 +155,8 @@ finally:
 ```python
 #!/usr/bin/env python3
 import rclpy
-from mapping.camera_interface import CameraInterface
-from mapping.area_mapping import AreaMapper
+from src.swarm_mapping.camera_interface import CameraInterface
+from src.swarm_mapping.area_mapping import AreaMapper
 
 rclpy.init()
 
@@ -204,8 +204,8 @@ finally:
 #!/usr/bin/env python3
 import rclpy
 import cv2
-from mapping.camera_interface import CameraInterface
-from mapping.vision_processing import VisionProcessor, VisualizationHelper
+from src.swarm_mapping.camera_interface import CameraInterface
+from src.swarm_mapping.vision_processing import VisionProcessor, VisualizationHelper
 
 rclpy.init()
 
@@ -241,7 +241,7 @@ finally:
 
 ```python
 #!/usr/bin/env python3
-from mapping.area_mapping import GridMapper
+from src.swarm_mapping.area_mapping import GridMapper
 import cv2
 
 # Create grid for 100x100 meter area with 5m cells
@@ -275,9 +275,9 @@ The mapping module can be used by the orchestrator to make vision-based decision
 
 ```python
 # In orchestrator mission script
-from mapping.camera_interface import CameraInterface
-from mapping.vision_processing import VisionProcessor
-from orchestrator.command_interface import CommandInterface
+from src.swarm_mapping.camera_interface import CameraInterface
+from src.swarm_mapping.vision_processing import VisionProcessor
+from src.swarm_orchestrator.command_interface import CommandInterface
 
 camera = CameraInterface(num_drones=5)
 vision = VisionProcessor()

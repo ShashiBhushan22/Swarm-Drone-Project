@@ -12,8 +12,8 @@ import numpy as np
 import threading
 import time
 from datetime import datetime
-from orchestrator.command_interface import CommandInterface
-from formations.generators import FormationGenerator
+from src.swarm_orchestrator.command_interface import CommandInterface
+from src.swarm_formations.generators import FormationGenerator
 
 # Configuration
 NUM_DRONES = 5

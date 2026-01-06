@@ -122,7 +122,7 @@ source install/setup.bash
 python3 install/digi_rc/lib/digi_rc/multi_drone.py
 
 # Terminal 3: Run circle formation mission
-python3 orchestrator/circle_mission.py
+python3 src/swarm_orchestrator/circle_mission.py
 ```
 
 Mission sequence executed:
@@ -190,7 +190,7 @@ if __name__ == '__main__':
 ### Example 3: Available Formation Types
 
 ```python
-from formations.generators import FormationGenerator
+from src.swarm_formations.generators import FormationGenerator
 
 # Line formation - horizontal or vertical
 line_positions = FormationGenerator.generate_line_formation(
@@ -326,8 +326,8 @@ The orchestrator layer adds mission coordination **on top** of existing componen
 - ✅ `formations/generators.py` position calculations
 
 ### New Layer:
-- ➕ `orchestrator/command_interface.py` - ROS2 service client
-- ➕ `orchestrator/circle_mission.py` - Example mission
+- ➕ `src/swarm_orchestrator/command_interface.py` - ROS2 service client
+- ➕ `src/swarm_orchestrator/circle_mission.py` - Example mission
 - ➕ Your custom missions using command interface
 
 ## Creating Custom Missions
@@ -338,8 +338,8 @@ Template for creating your own mission:
 #!/usr/bin/env python3
 import rclpy
 import asyncio
-from orchestrator.command_interface import CommandInterface
-from formations.generators import FormationGenerator
+from src.swarm_orchestrator.command_interface import CommandInterface
+from src.swarm_formations.generators import FormationGenerator
 
 async def my_custom_mission():
     rclpy.init()

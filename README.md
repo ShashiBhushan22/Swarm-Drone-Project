@@ -36,12 +36,15 @@ Before starting, ensure you have the following installed:
 
 ## Module Structure
 
-- **orchestrator/** - State machine, task allocation, coordination
-- **digi_rc/** - ROS 2 communication layer (command receiver)
-- **formations/** - Formation geometry generators
-- **mapping/** - Computer vision, camera interface, area mapping
-- **qgc_integration/** - QGroundControl connection setup and guides
-- **mock_mission/** - Legacy mission examples
+```
+src/
+├── swarm_orchestrator/    - Mission coordination & command interface
+├── swarm_formations/      - Formation geometry generators  
+├── swarm_mapping/         - Computer vision & area mapping
+└── digi_rc/               - ROS2 communication layer (drone control)
+```
+
+All swarm-related editable source code is organized under `src/` for clean structure.
 
 ## Quick Start - Automated Launch
 
@@ -206,7 +209,7 @@ Open a **third terminal (Terminal 3)** and run the orchestrator mission:
 cd /home/bhushan-arc/skyflock_uav_arc
 source install/setup.bash
 export PYTHONPATH=$PYTHONPATH:/home/bhushan-arc/skyflock_uav_arc
-python3 orchestrator/example_mission.py
+python3 src/swarm_orchestrator/circle_mission.py
 ```
 
 **Alternative:** Run the mock_mission instead:
@@ -375,7 +378,7 @@ drone5: (6, 4, 7)     # Right rear
 
 ### Option 1: Using Orchestrator (Recommended)
 
-**Location: `orchestrator/example_mission.py`** or create your own
+**Location: `src/swarm_orchestrator/circle_mission.py`** or create your own
 
 The orchestrator provides a cleaner, more modular approach:
 
@@ -383,8 +386,8 @@ The orchestrator provides a cleaner, more modular approach:
 #!/usr/bin/env python3
 import rclpy
 import asyncio
-from orchestrator.command_interface import CommandInterface
-from orchestrator.task_definitions import FormationGenerator
+from src.swarm_orchestrator.command_interface import CommandInterface
+from src.swarm_formations.generators import FormationGenerator
 
 async def my_custom_mission():
     rclpy.init()
@@ -415,7 +418,7 @@ if __name__ == '__main__':
     asyncio.run(my_custom_mission())
 ```
 
-See [orchestrator/README.md](orchestrator/README.md) for more examples.
+See [src/swarm_orchestrator/README.md](src/swarm_orchestrator/README.md) for more examples.
 
 ### Option 2: Using Mock Mission (Legacy)
 
